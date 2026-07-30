@@ -2,7 +2,6 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { AppShell } from "@/components/AppShell";
 import { AnalysisTabs } from "@/components/AnalysisTabs";
-import { DemoFlowNav } from "@/components/DemoFlowNav";
 import { PoseTracker } from "@/components/PoseTracker";
 import { getAnalysis, getJob, getWorker } from "@/data/mock";
 
@@ -38,7 +37,6 @@ export default async function PosePage({
         </div>
       }
     >
-      {id === "V-101" ? <DemoFlowNav current="pose" /> : null}
       <AnalysisTabs videoId={id} />
 
       {!analysis ? (

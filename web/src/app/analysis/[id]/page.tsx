@@ -2,7 +2,6 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { AppShell } from "@/components/AppShell";
 import { AnalysisTabs } from "@/components/AnalysisTabs";
-import { DemoFlowNav } from "@/components/DemoFlowNav";
 import { EvidenceGallery } from "@/components/EvidenceGallery";
 import { ExplainCard } from "@/components/ExplainCard";
 import { MatchingCard } from "@/components/MatchingCard";
@@ -46,7 +45,6 @@ export default async function AnalysisOverviewPage({
         </div>
       }
     >
-      {id === "V-101" ? <DemoFlowNav current="analysis" /> : null}
       <AnalysisTabs videoId={id} />
 
       {job.status !== "completed" ? (

@@ -180,9 +180,9 @@ export type AnalysisResult = {
 };
 
 export const assignees = [
-  "허윤미 (평가자)",
-  "주호정 (운영)",
-  "김연서 (평가자)",
+  "평가자 A",
+  "운영 담당",
+  "평가자 B",
 ];
 
 export function computeScore(m: {
@@ -310,7 +310,7 @@ export const jobs: WorkJob[] = [
     status: "completed",
     progress: 100,
     skillScore: 78,
-    assignee: "허윤미 (평가자)",
+    assignee: "평가자 A",
   },
   {
     id: "J-102",
@@ -324,7 +324,7 @@ export const jobs: WorkJob[] = [
     status: "completed",
     progress: 100,
     skillScore: 75,
-    assignee: "허윤미 (평가자)",
+    assignee: "평가자 A",
   },
   {
     id: "J-103",
@@ -338,7 +338,7 @@ export const jobs: WorkJob[] = [
     status: "completed",
     progress: 100,
     skillScore: 72,
-    assignee: "김연서 (평가자)",
+    assignee: "평가자 B",
   },
   {
     id: "J-201",
@@ -352,7 +352,7 @@ export const jobs: WorkJob[] = [
     status: "completed",
     progress: 100,
     skillScore: 86,
-    assignee: "김연서 (평가자)",
+    assignee: "평가자 B",
   },
   {
     id: "J-301",
@@ -366,7 +366,7 @@ export const jobs: WorkJob[] = [
     status: "pose_extraction",
     progress: 45,
     skillScore: null,
-    assignee: "주호정 (운영)",
+    assignee: "운영 담당",
   },
   {
     id: "J-401",
@@ -978,7 +978,7 @@ export const dashboardStats = {
 };
 
 export const currentUser = {
-  name: "허윤미",
+  name: "관리자",
   role: "admin" as UserRole,
 };
 
