@@ -42,7 +42,7 @@ export default async function WorkerDetailPage({
         )
       }
     >
-      {id === "W-001" ? <DemoFlowNav current="worker" /> : null}
+      {id.startsWith("W-") ? <DemoFlowNav current="worker" /> : null}
 
       <div className="grid gap-4 lg:grid-cols-3">
         <section className="rounded-xl border border-line bg-surface p-5 lg:col-span-1">

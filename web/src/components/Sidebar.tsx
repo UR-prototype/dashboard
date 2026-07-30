@@ -18,33 +18,29 @@ import {
   Scan,
 } from "lucide-react";
 
+/** 시연 흐름 = 현황 → 작업자 → AI 분석 → Pose → 평가서 */
 const navGroups = [
   {
-    title: "시연",
+    title: "시연 흐름",
     items: [
-      { href: "/workers/W-001", label: "작업자", icon: Users },
-      { href: "/analysis/V-101", label: "AI 분석", icon: Activity },
-      { href: "/analysis/V-101/pose", label: "Pose", icon: Scan },
-      { href: "/reports/V-101", label: "평가서", icon: FileBarChart2 },
-    ],
-  },
-  {
-    title: "홈",
-    items: [
-      { href: "/", label: "현황", icon: Home },
-      { href: "/journey", label: "업무 프로세스", icon: Route },
-      { href: "/compare", label: "인력 비교", icon: GitCompare },
+      { href: "/", label: "1. 현황", icon: Home },
+      { href: "/workers/W-001", label: "2. 작업자", icon: Users },
+      { href: "/analysis/V-101", label: "3. AI 분석", icon: Activity },
+      { href: "/analysis/V-101/pose", label: "4. Pose", icon: Scan },
+      { href: "/reports/V-101", label: "5. 평가서", icon: FileBarChart2 },
     ],
   },
   {
     title: "운영",
     items: [
       { href: "/ops", label: "운영 현황", icon: LayoutDashboard },
-      { href: "/ops/failures", label: "실패 건", icon: AlertOctagon },
-      { href: "/workers", label: "기술자", icon: Users },
       { href: "/jobs", label: "작업 영상", icon: ClipboardList },
       { href: "/analysis/status", label: "분석 상태", icon: ListChecks },
+      { href: "/workers", label: "기술자 목록", icon: Users },
+      { href: "/ops/failures", label: "실패 건", icon: AlertOctagon },
       { href: "/job-types", label: "직종별 분석", icon: Layers },
+      { href: "/compare", label: "인력 비교", icon: GitCompare },
+      { href: "/journey", label: "업무 프로세스", icon: Route },
     ],
   },
 ];
@@ -68,6 +64,9 @@ function isActive(pathname: string, href: string) {
     );
   }
   if (target === "/ops") return path === "/ops";
+  if (target === "/workers") {
+    return path === "/workers" || path.startsWith("/workers/new");
+  }
   return path === target || path.startsWith(`${target}/`);
 }
 

@@ -119,7 +119,7 @@ export default function ReportPage() {
         </div>
       ) : (
         <>
-          {id === "V-101" ? <DemoFlowNav current="report" /> : null}
+          {analysis ? <DemoFlowNav current="report" /> : null}
         <article className="report-sheet mx-auto max-w-3xl space-y-6 rounded-xl border border-line bg-surface p-8 shadow-sm print:border-0 print:shadow-none">
           <header className="border-b border-line pb-4">
             <p className="text-xs font-semibold uppercase tracking-wide text-brand">

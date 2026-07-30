@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import { DemoFlowNav } from "@/components/DemoFlowNav";
 
 const tabs = [
   { slug: "", label: "종합" },
@@ -23,24 +24,27 @@ export function AnalysisTabs({ videoId }: { videoId: string }) {
   const base = `/analysis/${videoId}`;
 
   return (
-    <div className="mb-5 flex flex-wrap gap-1 border-b border-line pb-3">
-      {tabs.map((t) => {
-        const href = t.slug ? `${base}/${t.slug}` : base;
-        const active = pathname === href;
-        return (
-          <Link
-            key={t.label}
-            href={href}
-            className={`rounded-md px-2.5 py-1 text-sm ${
-              active
-                ? "bg-brand-soft font-medium text-brand"
-                : "text-muted hover:bg-bg hover:text-ink"
-            }`}
-          >
-            {t.label}
-          </Link>
-        );
-      })}
+    <div className="mb-5">
+      <DemoFlowNav />
+      <div className="flex flex-wrap gap-1">
+        {tabs.map((t) => {
+          const href = t.slug ? `${base}/${t.slug}` : base;
+          const active = pathname === href;
+          return (
+            <Link
+              key={t.label}
+              href={href}
+              className={`rounded-md px-2.5 py-1 text-sm ${
+                active
+                  ? "bg-brand-soft font-medium text-brand"
+                  : "text-muted hover:bg-bg hover:text-ink"
+              }`}
+            >
+              {t.label}
+            </Link>
+          );
+        })}
+      </div>
     </div>
   );
 }
