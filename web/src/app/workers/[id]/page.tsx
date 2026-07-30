@@ -23,7 +23,7 @@ export default async function WorkerDetailPage({
   return (
     <AppShell
       title={worker.name}
-      subtitle={`${worker.id} · 작업자 선택 · 분석 이력 확인`}
+      subtitle={`${worker.id} · ${worker.skill}`}
       actions={
         latestCompleted ? (
           <Link
@@ -44,15 +44,8 @@ export default async function WorkerDetailPage({
     >
       {id === "W-001" ? <DemoFlowNav current="worker" /> : null}
 
-      <section className="mb-5 rounded-xl border border-line bg-surface p-4 text-sm shadow-sm">
-        <p className="font-medium">이 화면에서 볼 것</p>
-        <p className="mt-1 text-muted">
-          작업자 프로필과 영상별 점수·상태·날짜(Analysis History). 완료된 영상을
-          고르면 AI 분석 결과로 이어집니다.
-        </p>
-      </section>
       <div className="grid gap-4 lg:grid-cols-3">
-        <section className="rounded-xl border border-line bg-surface p-5 shadow-sm lg:col-span-1">
+        <section className="rounded-xl border border-line bg-surface p-5 lg:col-span-1">
           <h2 className="text-sm font-semibold">기본 정보</h2>
           <dl className="mt-4 space-y-3 text-sm">
             <Row k="국적" v={worker.nationality} />
@@ -83,9 +76,8 @@ export default async function WorkerDetailPage({
           </dl>
         </section>
 
-        <section className="rounded-xl border border-line bg-surface p-5 shadow-sm lg:col-span-2">
+        <section className="rounded-xl border border-line bg-surface p-5 lg:col-span-2">
           <h2 className="text-sm font-semibold">숙련도 추이</h2>
-          <p className="mb-2 text-xs text-muted">월별 숙련도 점수</p>
           {worker.scoreHistory.length ? (
             <ScoreTrendChart data={worker.scoreHistory} />
           ) : (
@@ -94,15 +86,8 @@ export default async function WorkerDetailPage({
         </section>
       </div>
 
-      <section className="mt-6 rounded-xl border border-line bg-surface p-5 shadow-sm">
-        <div className="mb-4 flex items-center justify-between">
-          <div>
-            <h2 className="text-sm font-semibold">Analysis History</h2>
-            <p className="mt-1 text-xs text-muted">
-              영상 · 점수 · 상태 · 날짜
-            </p>
-          </div>
-        </div>
+      <section className="mt-6 rounded-xl border border-line bg-surface p-5">
+        <h2 className="mb-4 text-sm font-semibold">분석 이력</h2>
         <div className="overflow-hidden rounded-lg border border-line">
           <table className="w-full text-left text-sm">
             <thead className="bg-bg text-xs text-muted">

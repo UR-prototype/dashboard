@@ -3,7 +3,6 @@
 import Link from "next/link";
 import { useState } from "react";
 import { AppShell } from "@/components/AppShell";
-import { PipelineProgress } from "@/components/PipelineProgress";
 import { StatusBadge } from "@/components/StatusBadge";
 import {
   analyses,
@@ -21,7 +20,6 @@ type Row = {
   progress: number;
   reviewStatus: ReviewStatus | "미검토";
   score: number | null;
-  confidence: number | null;
 };
 
 const initial: Row[] = jobs.map((j) => {
@@ -35,7 +33,6 @@ const initial: Row[] = jobs.map((j) => {
     progress: j.progress,
     reviewStatus: a?.reviewStatus ?? "미검토",
     score: a?.skillScore ?? null,
-    confidence: a?.confidence.aiConfidence ?? null,
   };
 });
 
@@ -45,54 +42,84 @@ export default function AnalysisStatusPage() {
   const [rows, setRows] = useState(initial);
 
   return (
-    <AppShell
-      title="분석 상태"
-      subtitle="분석 진행 상태 및 검토 현황"
-    >
-      <div className="space-y-4">
-        {rows.map((r, idx) => (
-          <div
-            key={r.videoId}
-            className="rounded-xl border border-line bg-surface p-4 shadow-sm"
-          >
-            <div className="mb-3 flex flex-wrap items-center justify-between gap-3">
-              <div>
-                <p className="font-medium">
-                  {r.workerName}{" "}
-                  <span className="font-mono text-xs text-muted">{r.videoId}</span>
-                </p>
-                <p className="text-xs text-muted">{r.jobType}</p>
-              </div>
-              <div className="flex flex-wrap items-center gap-3 text-sm">
-                <StatusBadge status={r.status} />
-                <span className="text-muted">
-                  점수 {r.score ?? "—"}
-                  {r.confidence != null ? ` · 신뢰도 ${r.confidence}%` : ""}
-                </span>
-                <select
-                  className="rounded-lg border border-line px-2 py-1 text-sm"
-                  value={r.reviewStatus}
-                  onChange={(e) => {
-                    const value = e.target.value as ReviewStatus;
-                    setRows((prev) =>
-                      prev.map((row, i) =>
-                        i === idx ? { ...row, reviewStatus: value } : row,
-                      ),
-                    );
-                  }}
-                >
-                  {reviewOptions.map((o) => (
-                    <option key={o}>{o}</option>
-                  ))}
-                </select>
-                <Link href={`/analysis/${r.videoId}`} className="text-brand hover:underline">
-                  결과
-                </Link>
-              </div>
-            </div>
-            <PipelineProgress status={r.status} progress={r.progress} />
-          </div>
-        ))}
+    <AppShell title="분석 상태" subtitle="진행 · 점수 · 검토">
+      <div className="overflow-hidden rounded-xl border border-line bg-surface">
+        <table className="w-full text-left text-sm">
+          <thead className="border-b border-line bg-bg text-xs text-muted">
+            <tr>
+              <th className="px-4 py-3 font-medium">작업자</th>
+              <th className="px-4 py-3 font-medium">영상</th>
+              <th className="px-4 py-3 font-medium">직종</th>
+              <th className="px-4 py-3 font-medium">상태</th>
+              <th className="px-4 py-3 font-medium">진행</th>
+              <th className="px-4 py-3 font-medium">점수</th>
+              <th className="px-4 py-3 font-medium">검토</th>
+              <th className="px-4 py-3 font-medium" />
+            </tr>
+          </thead>
+          <tbody>
+            {rows.map((r, idx) => (
+              <tr key={r.videoId} className="border-t border-line">
+                <td className="px-4 py-3 font-medium">{r.workerName}</td>
+                <td className="px-4 py-3 font-mono text-xs text-muted">
+                  {r.videoId}
+                </td>
+                <td className="px-4 py-3 text-muted">{r.jobType}</td>
+                <td className="px-4 py-3">
+                  <StatusBadge status={r.status} />
+                </td>
+                <td className="px-4 py-3">
+                  <div className="flex min-w-[7rem] items-center gap-2">
+                    <div className="h-1.5 flex-1 overflow-hidden rounded-full bg-bg">
+                      <div
+                        className={`h-full rounded-full ${
+                          r.status === "failed" ? "bg-danger" : "bg-brand"
+                        }`}
+                        style={{ width: `${r.progress}%` }}
+                      />
+                    </div>
+                    <span className="w-8 text-right font-mono text-[11px] text-muted">
+                      {r.progress}%
+                    </span>
+                  </div>
+                </td>
+                <td className="px-4 py-3">
+                  {r.score != null ? (
+                    <span className="font-semibold text-brand">{r.score}</span>
+                  ) : (
+                    <span className="text-muted">—</span>
+                  )}
+                </td>
+                <td className="px-4 py-3">
+                  <select
+                    className="rounded-md border border-line bg-surface px-2 py-1 text-xs"
+                    value={r.reviewStatus}
+                    onChange={(e) => {
+                      const value = e.target.value as ReviewStatus;
+                      setRows((prev) =>
+                        prev.map((row, i) =>
+                          i === idx ? { ...row, reviewStatus: value } : row,
+                        ),
+                      );
+                    }}
+                  >
+                    {reviewOptions.map((o) => (
+                      <option key={o}>{o}</option>
+                    ))}
+                  </select>
+                </td>
+                <td className="px-4 py-3 text-right">
+                  <Link
+                    href={`/analysis/${r.videoId}`}
+                    className="text-xs font-medium text-brand hover:underline"
+                  >
+                    결과
+                  </Link>
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
       </div>
     </AppShell>
   );

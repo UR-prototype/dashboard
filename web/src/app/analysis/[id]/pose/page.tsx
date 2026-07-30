@@ -41,27 +41,13 @@ export default async function PosePage({
       {id === "V-101" ? <DemoFlowNav current="pose" /> : null}
       <AnalysisTabs videoId={id} />
 
-      <section className="mb-5 rounded-xl border border-line bg-surface p-4 text-sm shadow-sm">
-        <p className="font-medium">이 화면에서 볼 것</p>
-        <p className="mt-1 text-muted">
-          점수·감점이 나온 이유를 관절 추적으로 확인합니다. Original / Pose
-          Overlay / Skeleton을 전환해 보세요.
-        </p>
-      </section>
-
       {!analysis ? (
         <div className="rounded-xl border border-dashed border-line bg-surface p-8 text-center text-sm text-muted">
           자세 분석 데이터가 없습니다.
         </div>
       ) : (
-        <section className="rounded-xl border border-line bg-surface p-5 shadow-sm">
-          <div className="mb-4">
-            <h2 className="text-sm font-semibold">자세 오버레이 · 관절 추적</h2>
-            <p className="mt-1 text-xs text-muted">
-              장면 시각을 선택하면 해당 프레임의 스켈레톤과 관절 좌표가
-              갱신됩니다.
-            </p>
-          </div>
+        <section className="rounded-xl border border-line bg-surface p-5">
+          <h2 className="mb-4 text-sm font-semibold">관절 추적</h2>
           <PoseTracker videoId={id} videoName={job.videoName} />
         </section>
       )}

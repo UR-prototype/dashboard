@@ -20,12 +20,12 @@ import {
 
 const navGroups = [
   {
-    title: "시연 흐름",
+    title: "시연",
     items: [
-      { href: "/workers/W-001", label: "1. 작업자", icon: Users },
-      { href: "/analysis/V-101", label: "2. AI 분석", icon: Activity },
-      { href: "/analysis/V-101/pose", label: "3. Pose", icon: Scan },
-      { href: "/reports/V-101", label: "4. 평가서", icon: FileBarChart2 },
+      { href: "/workers/W-001", label: "작업자", icon: Users },
+      { href: "/analysis/V-101", label: "AI 분석", icon: Activity },
+      { href: "/analysis/V-101/pose", label: "Pose", icon: Scan },
+      { href: "/reports/V-101", label: "평가서", icon: FileBarChart2 },
     ],
   },
   {
@@ -40,8 +40,8 @@ const navGroups = [
     title: "운영",
     items: [
       { href: "/ops", label: "운영 현황", icon: LayoutDashboard },
-      { href: "/ops/failures", label: "실패 건 관리", icon: AlertOctagon },
-      { href: "/workers", label: "기술자 목록", icon: Users },
+      { href: "/ops/failures", label: "실패 건", icon: AlertOctagon },
+      { href: "/workers", label: "기술자", icon: Users },
       { href: "/jobs", label: "작업 영상", icon: ClipboardList },
       { href: "/analysis/status", label: "분석 상태", icon: ListChecks },
       { href: "/job-types", label: "직종별 분석", icon: Layers },
@@ -49,39 +49,49 @@ const navGroups = [
   },
 ];
 
+function normalizePath(path: string) {
+  if (!path) return "/";
+  if (path.length > 1 && path.endsWith("/")) return path.slice(0, -1);
+  return path;
+}
+
 function isActive(pathname: string, href: string) {
-  if (href === "/") return pathname === "/";
-  if (href === "/analysis/V-101") {
+  const path = normalizePath(pathname);
+  const target = normalizePath(href);
+
+  if (target === "/") return path === "/";
+  if (target === "/analysis/V-101") {
     return (
-      pathname === "/analysis/V-101" ||
-      (pathname.startsWith("/analysis/V-101/") &&
-        !pathname.startsWith("/analysis/V-101/pose"))
+      path === "/analysis/V-101" ||
+      (path.startsWith("/analysis/V-101/") &&
+        !path.startsWith("/analysis/V-101/pose"))
     );
   }
-  if (href === "/ops") return pathname === "/ops";
-  return pathname === href || pathname.startsWith(`${href}/`);
+  if (target === "/ops") return path === "/ops";
+  return path === target || path.startsWith(`${target}/`);
 }
+
 export function Sidebar() {
   const pathname = usePathname();
 
   return (
-    <aside className="flex h-screen w-64 shrink-0 flex-col border-r border-line bg-surface">
-      <div className="border-b border-line px-5 py-4">
-        <div className="flex items-center gap-2">
-          <div className="flex h-8 w-8 items-center justify-center rounded-md bg-brand text-sm font-bold text-white">
-            UR
-          </div>
-          <div>
-            <p className="text-sm font-semibold text-ink">UR Connection</p>
-            <p className="text-[11px] text-muted">Skill Verification</p>
-          </div>
+    <aside className="flex h-full w-56 shrink-0 flex-col border-r border-line bg-surface">
+      <div className="flex h-14 shrink-0 items-center gap-2.5 border-b border-line px-4">
+        <div className="flex h-7 w-7 items-center justify-center rounded-md bg-brand text-xs font-bold text-white">
+          UR
+        </div>
+        <div className="min-w-0">
+          <p className="truncate text-sm font-semibold text-ink">
+            UR Connection
+          </p>
+          <p className="truncate text-[10px] text-muted">Skill Verification</p>
         </div>
       </div>
 
-      <nav className="flex-1 space-y-4 overflow-y-auto px-3 py-4">
+      <nav className="flex-1 space-y-5 overflow-y-auto px-2.5 py-3">
         {navGroups.map((group) => (
           <div key={group.title}>
-            <p className="px-2 pb-1.5 text-[11px] font-semibold uppercase tracking-wide text-muted">
+            <p className="px-2.5 pb-1 text-[10px] font-medium text-muted">
               {group.title}
             </p>
             <div className="space-y-0.5">
@@ -92,14 +102,14 @@ export function Sidebar() {
                   <Link
                     key={item.href}
                     href={item.href}
-                    className={`flex items-center gap-2 rounded-lg px-3 py-2 text-sm transition ${
+                    className={`flex items-center gap-2 rounded-md px-2.5 py-1.5 text-sm transition ${
                       active
                         ? "bg-brand-soft font-medium text-brand"
                         : "text-ink hover:bg-bg"
                     }`}
                   >
-                    <Icon size={16} />
-                    {item.label}
+                    <Icon size={15} className="shrink-0 opacity-80" />
+                    <span className="truncate">{item.label}</span>
                   </Link>
                 );
               })}
@@ -108,12 +118,12 @@ export function Sidebar() {
         ))}
       </nav>
 
-      <div className="border-t border-line p-3">
+      <div className="shrink-0 border-t border-line p-2.5">
         <Link
           href="/login"
-          className="flex w-full items-center justify-center gap-2 rounded-lg bg-danger px-3 py-2.5 text-sm font-medium text-white"
+          className="flex w-full items-center justify-center gap-2 rounded-md bg-danger px-3 py-2 text-sm font-medium text-white"
         >
-          <LogOut size={16} />
+          <LogOut size={15} />
           로그아웃
         </Link>
       </div>

@@ -25,15 +25,9 @@ export function ProductJudgmentPanel({
   judgment: ProductJudgment;
 }) {
   return (
-    <section className="rounded-xl border border-line bg-surface p-5 shadow-sm">
+    <section className="rounded-xl border border-line bg-surface p-5">
       <div className="mb-4 flex flex-wrap items-end justify-between gap-3">
-        <div>
-          <h2 className="text-sm font-semibold">결과물 판정</h2>
-          <p className="mt-1 text-xs text-muted">
-            완성품 사진을 기준 샘플과 대조한 품질 판정입니다. 정확도 점수에
-            반영됩니다.
-          </p>
-        </div>
+        <h2 className="text-sm font-semibold">결과물 판정</h2>
         <div className="flex items-center gap-2">
           <span
             className={`rounded-lg border px-3 py-1.5 text-sm font-semibold ${overallStyle[judgment.overall]}`}

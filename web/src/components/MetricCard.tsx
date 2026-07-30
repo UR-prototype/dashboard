@@ -12,7 +12,7 @@ export function MetricCard({
   icon?: ReactNode;
 }) {
   return (
-    <div className="rounded-xl border border-line bg-surface p-4 shadow-sm">
+    <div className="rounded-xl border border-line bg-surface p-4">
       <div className="flex items-start justify-between gap-3">
         <div>
           <p className="text-xs font-medium text-muted">{label}</p>

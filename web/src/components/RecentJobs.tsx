@@ -23,11 +23,11 @@ export function RecentJobs({
     .slice(0, limit);
 
   return (
-    <section className="rounded-xl border border-line bg-surface p-5 shadow-sm">
+    <section className="rounded-xl border border-line bg-surface p-5">
       <div className="mb-3 flex items-center justify-between">
         <h2 className="text-sm font-semibold">{title}</h2>
         <Link href="/jobs" className="text-xs text-brand hover:underline">
-          전체 보기
+          전체
         </Link>
       </div>
       <ul className="divide-y divide-line">

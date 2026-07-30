@@ -6,11 +6,9 @@ import { DemoFlowNav } from "@/components/DemoFlowNav";
 import { EvidenceGallery } from "@/components/EvidenceGallery";
 import { ExplainCard } from "@/components/ExplainCard";
 import { MatchingCard } from "@/components/MatchingCard";
-import { MetricCard } from "@/components/MetricCard";
 import { PipelineProgress } from "@/components/PipelineProgress";
 import { ProductJudgmentPanel } from "@/components/ProductJudgmentPanel";
 import { ScoreBreakdown } from "@/components/ScoreBreakdown";
-import { SkillRadar } from "@/components/DashboardCharts";
 import { StatusBadge } from "@/components/StatusBadge";
 import { TimelineScrubber } from "@/components/TimelineScrubber";
 import { getAnalysis, getJob, getWorker } from "@/data/mock";
@@ -34,16 +32,10 @@ export default async function AnalysisOverviewPage({
       actions={
         <div className="flex gap-2">
           <Link
-            href={`/workers/${job.workerId}`}
-            className="rounded-lg border border-line px-3 py-2 text-sm"
-          >
-            작업자
-          </Link>
-          <Link
             href={`/analysis/${id}/pose`}
             className="rounded-lg border border-line px-3 py-2 text-sm"
           >
-            Pose 근거
+            Pose
           </Link>
           <Link
             href={`/reports/${id}`}
@@ -57,21 +49,15 @@ export default async function AnalysisOverviewPage({
       {id === "V-101" ? <DemoFlowNav current="analysis" /> : null}
       <AnalysisTabs videoId={id} />
 
-      <section className="mb-5 rounded-xl border border-line bg-surface p-4 text-sm shadow-sm">
-        <p className="font-medium">이 화면에서 볼 것</p>
-        <p className="mt-1 text-muted">
-          AI가 산출한 숙련도·감점 타임라인·Feature·결과물 판정·현장 매칭. 점수
-          근거가 궁금하면 Pose로 이동하세요.
-        </p>
-      </section>
-
-      <section className="mb-6 rounded-xl border border-line bg-surface p-5 shadow-sm">
-        <PipelineProgress
-          status={job.status}
-          progress={job.progress}
-          detailed
-        />
-      </section>
+      {job.status !== "completed" ? (
+        <section className="mb-5 rounded-xl border border-line bg-surface p-4">
+          <PipelineProgress
+            status={job.status}
+            progress={job.progress}
+            variant="full"
+          />
+        </section>
+      ) : null}
 
       {!analysis ? (
         <div className="rounded-xl border border-dashed border-line bg-surface p-10 text-center">
@@ -81,76 +67,29 @@ export default async function AnalysisOverviewPage({
           </p>
         </div>
       ) : (
-        <>
-          <div className="mb-6">
-            <ExplainCard result={analysis} />
+        <div className="space-y-5">
+          <ExplainCard result={analysis} />
+
+          <div className="grid gap-5 xl:grid-cols-5">
+            <div className="xl:col-span-3">
+              <TimelineScrubber result={analysis} />
+            </div>
+            <div className="space-y-5 xl:col-span-2">
+              <section className="rounded-xl border border-line bg-surface p-5">
+                <h2 className="mb-3 text-sm font-semibold">점수 구성</h2>
+                <ScoreBreakdown result={analysis} />
+              </section>
+              <MatchingCard matching={analysis.matching} />
+            </div>
           </div>
 
-          <div className="grid gap-4 sm:grid-cols-2 xl:grid-cols-4">
-            <MetricCard
-              label="숙련도 점수"
-              value={analysis.skillScore}
-              hint={analysis.skillLevel}
-            />
-            <MetricCard
-              label="분석 신뢰도"
-              value={`${analysis.confidence.aiConfidence}%`}
-              hint={
-                analysis.confidence.aiConfidence < 80
-                  ? "신뢰도 주의"
-                  : "신뢰도 양호"
-              }
-            />
-            <MetricCard
-              label="자세 추적 품질"
-              value={`${analysis.confidence.poseTrackingQuality}%`}
-              hint={`검출 커버리지 ${analysis.confidence.detectionCoverage}%`}
-            />
-            <MetricCard
-              label="처리 프레임"
-              value={analysis.framesExtracted}
-              hint={`관절 포인트 ${analysis.posePoints.toLocaleString()}`}
-            />
-          </div>
+          <ProductJudgmentPanel judgment={analysis.productJudgment} />
 
-          <div className="mt-6">
-            <TimelineScrubber result={analysis} />
-          </div>
-
-          <div className="mt-6">
-            <EvidenceGallery frames={analysis.evidenceFrames} />
-          </div>
-
-          <div className="mt-6">
-            <ProductJudgmentPanel judgment={analysis.productJudgment} />
-          </div>
-
-          <div className="mt-6 grid gap-4 xl:grid-cols-2">
-            <section className="rounded-xl border border-line bg-surface p-5 shadow-sm">
-              <h2 className="mb-3 text-sm font-semibold">
-                점수 구성 · Feature
-              </h2>
-              <ScoreBreakdown result={analysis} />
-            </section>
-            <section className="rounded-xl border border-line bg-surface p-5 shadow-sm">
-              <h2 className="mb-3 text-sm font-semibold">숙련도 레이더</h2>
-              <SkillRadar metrics={analysis.metrics} />
-              <div className="mt-4">
-                <MatchingCard matching={analysis.matching} />
-              </div>
-            </section>
-          </div>
-
-          <section className="mt-6 rounded-xl border border-line bg-surface p-5 shadow-sm">
-            <h2 className="text-sm font-semibold">분석 요약 · 개선 권고</h2>
-            <p className="mt-2 text-sm leading-relaxed">{analysis.summary}</p>
-            <ul className="mt-3 list-disc space-y-1 pl-5 text-sm text-muted">
-              {analysis.improvements.map((item) => (
-                <li key={item}>{item}</li>
-              ))}
-            </ul>
-          </section>
-        </>
+          <EvidenceGallery
+            frames={analysis.evidenceFrames}
+            highlightOnly
+          />
+        </div>
       )}
     </AppShell>
   );

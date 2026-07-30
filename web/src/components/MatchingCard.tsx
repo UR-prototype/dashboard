@@ -2,40 +2,35 @@ import type { MatchingRecommendation } from "@/data/mock";
 
 export function MatchingCard({ matching }: { matching: MatchingRecommendation }) {
   return (
-    <section className="rounded-xl border border-brand/30 bg-brand-soft/40 p-5 shadow-sm">
+    <section className="rounded-xl border border-line bg-surface p-5">
       <div className="flex items-start justify-between gap-3">
         <div>
-          <p className="text-xs font-semibold uppercase tracking-wide text-brand">
-            현장 매칭 추천
-          </p>
+          <p className="text-xs font-medium text-muted">현장 매칭</p>
           <h2 className="mt-1 text-base font-semibold text-ink">
             {matching.recommendedJob}
           </h2>
         </div>
         <span
-          className={`rounded-md px-2 py-1 text-xs font-semibold ${
+          className={`rounded-md px-2 py-1 text-xs font-medium ${
             matching.eligible
-              ? "bg-emerald-100 text-emerald-800"
-              : "bg-amber-100 text-amber-800"
+              ? "bg-emerald-50 text-ok"
+              : "bg-amber-50 text-amber-800"
           }`}
         >
-          {matching.eligible ? "매칭 가능" : "교육 후 재평가"}
+          {matching.eligible ? "가능" : "교육 후"}
         </span>
       </div>
-      <p className="mt-3 text-sm text-muted">{matching.reason}</p>
-      <div className="mt-4">
-        <p className="text-xs font-medium text-muted">추천 현장</p>
-        <ul className="mt-2 flex flex-wrap gap-2">
-          {matching.recommendedSites.map((site) => (
-            <li
-              key={site}
-              className="rounded-lg border border-line bg-surface px-3 py-1.5 text-sm"
-            >
-              {site}
-            </li>
-          ))}
-        </ul>
-      </div>
+      <p className="mt-2 text-sm text-muted">{matching.reason}</p>
+      <ul className="mt-3 flex flex-wrap gap-1.5">
+        {matching.recommendedSites.map((site) => (
+          <li
+            key={site}
+            className="rounded-md border border-line bg-bg px-2.5 py-1 text-xs text-muted"
+          >
+            {site}
+          </li>
+        ))}
+      </ul>
     </section>
   );
 }

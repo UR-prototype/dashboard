@@ -33,15 +33,12 @@ export function EvidenceGallery({
     : frames;
 
   return (
-    <section className="rounded-xl border border-line bg-surface p-5 shadow-sm">
+    <section className="rounded-xl border border-line bg-surface p-5">
       <div className="mb-4 flex flex-wrap items-end justify-between gap-2">
-        <div>
-          <h2 className="text-sm font-semibold">장면별 분석 근거</h2>
-          <p className="mt-1 text-xs text-muted">
-            AI가 판정에 사용한 장면 프레임과 해당 구간의 결과입니다.
-          </p>
-        </div>
-        <p className="text-xs text-muted">총 {list.length}장면</p>
+        <h2 className="text-sm font-semibold">
+          {highlightOnly ? "감점 · 핵심 장면" : "장면별 분석 근거"}
+        </h2>
+        <p className="text-xs text-muted">{list.length}장면</p>
       </div>
 
       <div className="grid gap-4 sm:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4">

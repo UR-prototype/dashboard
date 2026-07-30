@@ -7,7 +7,6 @@ import type {
   EvidenceFrame,
   TimeSegment,
 } from "@/data/mock";
-import { DeductionList } from "@/components/DeductionList";
 import { asset } from "@/lib/asset";
 
 function formatTime(t: number) {
@@ -76,28 +75,23 @@ export function TimelineScrubber({
   );
 
   return (
-    <section className="rounded-xl border border-line bg-surface p-5 shadow-sm">
-      <div className="mb-3 flex flex-wrap items-end justify-between gap-2">
-        <div>
-          <h2 className="text-sm font-semibold">타임라인 · 감점 연동</h2>
-          <p className="mt-1 text-xs text-muted">
-            마커를 클릭하면 해당 시각의 장면으로 이동합니다.
-          </p>
-        </div>
-        <p className="font-mono text-sm font-semibold text-brand">
-          t = {formatTime(t)}
+    <section className="rounded-xl border border-line bg-surface p-5">
+      <div className="mb-3 flex items-center justify-between gap-2">
+        <h2 className="text-sm font-semibold">타임라인</h2>
+        <p className="font-mono text-sm tabular-nums text-muted">
+          {formatTime(t)}
         </p>
       </div>
 
       <div className="grid gap-4 lg:grid-cols-[1.1fr_0.9fr]">
-        <div className="space-y-4">
+        <div className="space-y-3">
           <SegmentBar
             segments={result.timeSegments}
             duration={duration}
             t={t}
             onSeek={setT}
           />
-          <div className="relative h-3 rounded-full bg-bg">
+          <div className="relative h-2.5 rounded-full bg-bg">
             <input
               type="range"
               min={0}
@@ -114,7 +108,7 @@ export function TimelineScrubber({
                 type="button"
                 title={`${formatTime(m.t)} · ${m.label}`}
                 onClick={() => setT(m.t)}
-                className={`absolute top-1/2 h-3.5 w-3.5 -translate-x-1/2 -translate-y-1/2 rounded-full border-2 border-white shadow ${
+                className={`absolute top-1/2 h-3 w-3 -translate-x-1/2 -translate-y-1/2 rounded-full border-2 border-white ${
                   m.kind === "idle"
                     ? "bg-slate-500"
                     : m.kind === "anomaly"
@@ -126,52 +120,40 @@ export function TimelineScrubber({
             ))}
           </div>
 
-          <ul className="grid gap-2 sm:grid-cols-2">
-            {markers.map((m) => (
-              <li key={`list-${m.t}-${m.label}`}>
-                <button
-                  type="button"
-                  onClick={() => setT(m.t)}
-                  className={`flex w-full items-center justify-between rounded-lg border px-3 py-2 text-left text-sm transition ${
-                    Math.abs(m.t - t) < 3
-                      ? "border-brand bg-brand-soft"
-                      : "border-line hover:border-brand/40"
-                  }`}
-                >
-                  <span className="flex items-center gap-2">
-                    <span
-                      className={`h-2 w-2 rounded-full ${
-                        m.kind === "idle"
-                          ? "bg-slate-500"
-                          : m.kind === "anomaly"
-                            ? "bg-amber-500"
-                            : "bg-brand"
-                      }`}
-                    />
-                    {m.label}
-                  </span>
-                  <span className="font-mono text-xs text-muted">
-                    {formatTime(m.t)}
-                  </span>
-                </button>
-              </li>
-            ))}
-          </ul>
-
           {activeDeduction ? (
-            <div className="rounded-lg border border-amber-200 bg-amber-50 px-3 py-2 text-sm">
-              <p className="font-medium text-amber-900">
+            <div className="rounded-lg border border-line bg-bg px-3 py-2 text-sm">
+              <p className="font-medium">
                 {activeDeduction.label}{" "}
                 <span className="text-danger">{activeDeduction.impact}</span>
               </p>
-              <p className="mt-0.5 text-xs text-amber-800/80">
+              <p className="mt-0.5 text-xs text-muted">
                 {activeDeduction.detail}
               </p>
             </div>
           ) : null}
+
+          <div className="space-y-1.5">
+            {result.deductions.map((d) => (
+              <button
+                key={`${d.key}-${d.t}`}
+                type="button"
+                onClick={() => setT(d.t)}
+                className={`flex w-full items-center justify-between rounded-md px-2 py-1.5 text-left text-sm transition ${
+                  Math.abs(d.t - t) < 5
+                    ? "bg-brand-soft text-brand"
+                    : "text-muted hover:bg-bg hover:text-ink"
+                }`}
+              >
+                <span className="truncate">{d.label}</span>
+                <span className="shrink-0 font-mono text-xs">
+                  {formatTime(d.t)} · {d.impact}
+                </span>
+              </button>
+            ))}
+          </div>
         </div>
 
-        <div className="overflow-hidden rounded-xl border border-line bg-slate-900">
+        <div className="overflow-hidden rounded-lg border border-line bg-slate-900">
           <div className="relative aspect-video">
             {frame ? (
               // eslint-disable-next-line @next/next/no-img-element
@@ -194,30 +176,6 @@ export function TimelineScrubber({
               {frame.finding}
             </p>
           ) : null}
-        </div>
-      </div>
-
-      <div className="mt-4 border-t border-line pt-4">
-        <h3 className="mb-2 text-xs font-semibold uppercase text-muted">
-          감점 목록 (클릭 연동)
-        </h3>
-        <div className="space-y-2">
-          {result.deductions.map((d) => (
-            <div
-              key={`${d.key}-${d.t}`}
-              role="button"
-              tabIndex={0}
-              onClick={() => setT(d.t)}
-              onKeyDown={(e) => {
-                if (e.key === "Enter" || e.key === " ") setT(d.t);
-              }}
-              className={`cursor-pointer rounded-lg transition ${
-                Math.abs(d.t - t) < 5 ? "ring-2 ring-brand" : ""
-              }`}
-            >
-              <DeductionList deductions={[d]} frames={result.evidenceFrames} />
-            </div>
-          ))}
         </div>
       </div>
     </section>

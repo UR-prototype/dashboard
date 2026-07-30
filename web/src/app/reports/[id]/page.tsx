@@ -120,13 +120,6 @@ export default function ReportPage() {
       ) : (
         <>
           {id === "V-101" ? <DemoFlowNav current="report" /> : null}
-          <section className="mb-5 rounded-xl border border-line bg-surface p-4 text-sm shadow-sm">
-            <p className="font-medium">이 화면에서 볼 것</p>
-            <p className="mt-1 text-muted">
-              AI 분석·결과물·매칭을 평가서로 묶어 확인·인쇄·내보냅니다. 시연의
-              마지막 단계입니다.
-            </p>
-          </section>
         <article className="report-sheet mx-auto max-w-3xl space-y-6 rounded-xl border border-line bg-surface p-8 shadow-sm print:border-0 print:shadow-none">
           <header className="border-b border-line pb-4">
             <p className="text-xs font-semibold uppercase tracking-wide text-brand">

@@ -5,6 +5,10 @@
 
 **GitHub Pages:** https://ur-prototype.github.io/dashboard/
 
+> 최초 1회: [Settings → Pages](https://github.com/UR-prototype/dashboard/settings/pages)  
+> Source = **Deploy from a branch** → Branch = **`gh-pages` / `/ (root)`** → Save  
+> (`main` push 시 Actions가 `gh-pages`를 자동 갱신합니다.)
+
 | 문서 | 내용 |
 |------|------|
 | [시스템-아키텍처.md](./시스템-아키텍처.md) | 전체 구성도 (맨 앞) |

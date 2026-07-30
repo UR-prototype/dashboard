@@ -54,12 +54,17 @@ textarea {
 
 @media print {
   aside,
-  header .flex.shrink-0,
+  header,
   .no-print {
     display: none !important;
   }
 
+  body {
+    overflow: visible !important;
+  }
+
   main {
+    overflow: visible !important;
     padding: 0 !important;
   }
 
