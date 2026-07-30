@@ -22,7 +22,8 @@ npm install
 npm run dev
 ```
 
-브라우저: **http://localhost:3000**
+브라우저: **http://localhost:3000**  
+배포: **https://ur-prototype.github.io/dashboard/**
 
 | 참고 | 내용 |
 |------|------|
