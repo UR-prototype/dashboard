@@ -1,0 +1,22 @@
+1:"$Sreact.fragment"
+2:I[9766,[],""]
+3:I[98924,[],""]
+4:I[52619,["619","static/chunks/619-f072ac750404f9da.js","974","static/chunks/app/page-d48124aff175beb5.js"],""]
+5:I[81959,[],"ClientPageRoot"]
+6:I[39209,["619","static/chunks/619-f072ac750404f9da.js","881","static/chunks/881-6d9a2337c4e00850.js","77","static/chunks/77-ad89266af8918236.js","644","static/chunks/app/reports/%5Bid%5D/page-804924bf475d6fce.js"],"default"]
+9:I[24431,[],"OutletBoundary"]
+b:I[15278,[],"AsyncMetadataOutlet"]
+d:I[24431,[],"ViewportBoundary"]
+f:I[24431,[],"MetadataBoundary"]
+10:"$Sreact.suspense"
+12:I[57150,[],""]
+:HL["/dashboard/_next/static/media/13971731025ec697-s.p.woff2","font",{"crossOrigin":"","type":"font/woff2"}]
+:HL["/dashboard/_next/static/css/6d3cfa28c002760a.css","style"]
+0:{"P":null,"b":"PrOB9S7vc-hzgkXC3bVAn","p":"/dashboard","c":["","reports","V-103",""],"i":false,"f":[[["",{"children":["reports",{"children":[["id","V-103","d"],{"children":["__PAGE__",{}]}]}]},"$undefined","$undefined",true],["",["$","$1","c",{"children":[[["$","link","0",{"rel":"stylesheet","href":"/dashboard/_next/static/css/6d3cfa28c002760a.css","precedence":"next","crossOrigin":"$undefined","nonce":"$undefined"}]],["$","html",null,{"lang":"ko","children":["$","body",null,{"className":"__variable_3137e8 antialiased","children":["$","$L2",null,{"parallelRouterKey":"children","error":"$undefined","errorStyles":"$undefined","errorScripts":"$undefined","template":["$","$L3",null,{}],"templateStyles":"$undefined","templateScripts":"$undefined","notFound":[["$","div",null,{"className":"flex min-h-screen flex-col items-center justify-center gap-3 bg-bg","children":[["$","p",null,{"className":"text-lg font-semibold","children":"페이지를 찾을 수 없습니다"}],["$","$L4",null,{"href":"/","className":"text-sm text-brand hover:underline","children":"대시보드로 이동"}]]}],[]],"forbidden":"$undefined","unauthorized":"$undefined"}]}]}]]}],{"children":["reports",["$","$1","c",{"children":[null,["$","$L2",null,{"parallelRouterKey":"children","error":"$undefined","errorStyles":"$undefined","errorScripts":"$undefined","template":["$","$L3",null,{}],"templateStyles":"$undefined","templateScripts":"$undefined","notFound":"$undefined","forbidden":"$undefined","unauthorized":"$undefined"}]]}],{"children":[["id","V-103","d"],["$","$1","c",{"children":[null,["$","$L2",null,{"parallelRouterKey":"children","error":"$undefined","errorStyles":"$undefined","errorScripts":"$undefined","template":["$","$L3",null,{}],"templateStyles":"$undefined","templateScripts":"$undefined","notFound":"$undefined","forbidden":"$undefined","unauthorized":"$undefined"}]]}],{"children":["__PAGE__",["$","$1","c",{"children":[["$","$L5",null,{"Component":"$6","searchParams":{},"params":{"id":"V-103"},"promises":["$@7","$@8"]}],null,["$","$L9",null,{"children":["$La",["$","$Lb",null,{"promise":"$@c"}]]}]]}],{},null,false]},null,false]},null,false]},null,false],["$","$1","h",{"children":[null,[["$","$Ld",null,{"children":"$Le"}],["$","meta",null,{"name":"next-size-adjust","content":""}]],["$","$Lf",null,{"children":["$","div",null,{"hidden":true,"children":["$","$10",null,{"fallback":null,"children":"$L11"}]}]}]]}],false]],"m":"$undefined","G":["$12",[]],"s":false,"S":true}
+7:{}
+8:"$0:f:0:1:2:children:2:children:2:children:1:props:children:0:props:params"
+e:[["$","meta","0",{"charSet":"utf-8"}],["$","meta","1",{"name":"viewport","content":"width=device-width, initial-scale=1"}]]
+a:null
+13:I[80622,[],"IconMark"]
+c:{"metadata":[["$","title","0",{"children":"UR Connection · Skill Verification"}],["$","meta","1",{"name":"description","content":"해외 기술자 작업 영상 기반 숙련도 분석 · 매칭 지원"}],["$","link","2",{"rel":"icon","href":"/dashboard/favicon.ico","type":"image/x-icon","sizes":"16x16"}],["$","$L13","3",{}]],"error":null,"digest":"$undefined"}
+11:"$c:metadata"
