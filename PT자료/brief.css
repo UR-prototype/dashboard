@@ -72,6 +72,30 @@ body.nav-hidden .nav-toggle{left:16px}
 #evidence .formula{margin-top:1.5vh;padding:10px 13px}
 #evidence .warning{margin-top:6px}
 
+/* Analysis frame timeline */
+#evidence .compare{height:38vh;min-height:340px;max-height:400px;padding-bottom:82px}
+#evidence .compare>img,#evidence .compare>[data-before] img{bottom:82px;height:auto}
+#evidence .compare>[data-before]{bottom:82px}
+#evidence .compare>[data-line]{bottom:82px}
+#evidence .compare>input[data-slider]{bottom:82px;height:auto}
+.analysis-timeline{position:absolute;z-index:5;inset:auto 0 0;width:auto;height:82px;padding:10px 15px 8px;overflow:visible;background:#07182c;color:#fff}
+.timeline-meta{display:flex;align-items:center;gap:11px;height:20px;font-size:10px}
+.timeline-meta b{display:flex;align-items:center;gap:6px;color:#bff34b;font-size:10px}
+.timeline-meta strong{font-size:11px;font-weight:700}
+.timeline-meta time{margin-left:auto;color:#ffffffa8;font-size:10px;font-variant-numeric:tabular-nums}
+.pulse{width:6px;height:6px;border-radius:50%;background:#ffb547;box-shadow:0 0 0 3px #ffb5472e}
+.timeline-track{position:relative;display:flex;height:9px;margin-top:7px;overflow:visible;border-radius:2px;background:#ffffff1a}
+.timeline-track .segment{height:100%;border-right:2px solid #07182c}
+.timeline-track .normal,.timeline-legend .normal{background:#55c98b}
+.timeline-track .idle,.timeline-legend .idle{background:#75839a}
+.timeline-track .hand,.timeline-legend .hand{background:#ffb547}
+.timeline-track .playhead{position:absolute;top:-4px;width:2px;height:17px;background:#fff;box-shadow:0 0 0 1px #07182c}
+.timeline-track .playhead:before{content:"";position:absolute;left:-3px;top:-3px;border:4px solid transparent;border-top-color:#fff}
+.timeline-legend{display:flex;align-items:center;gap:13px;margin-top:7px;color:#ffffffa8;font-size:9px}
+.timeline-legend span{display:flex;align-items:center;gap:5px}
+.timeline-legend span i{width:7px;height:7px;border-radius:2px}
+.timeline-legend em{margin-left:auto;color:#ffffff6d;font-style:normal}
+
 @media(max-width:1000px){
   .rail{display:flex;transform:translateX(-100%)}
   main{margin-left:0}
@@ -87,7 +111,7 @@ body.nav-hidden .nav-toggle{left:16px}
   .cover-copy{padding:14vh 20px 0}
   .cover h1{font-size:36px}
   .nav-toggle{top:12px}
-  #evidence .compare{height:320px;min-height:320px}
+  #evidence .compare{height:390px;min-height:390px}
   .journey.journey-two-rows{grid-template-columns:repeat(2,1fr)}
 }
 
