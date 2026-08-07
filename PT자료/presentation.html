@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <meta name="description" content="UR Connection 작업 영상 기반 숙련도 평가 관리 시스템 개발 의뢰 브리프" />
+  <title>UR Connection 서비스 개발 의뢰 설명자료</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700&family=Noto+Sans+KR:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="presentation.css" />
+</head>
+<body>
+<aside class="rail">
+  <a class="brand" href="#cover"><i>UR</i><b>UR CONNECTION</b></a>
+  <nav>
+    <a href="#overview" data-nav><em>01</em>프로젝트 개요</a>
+    <a href="#problem" data-nav><em>02</em>추진 배경</a>
+    <a href="#users" data-nav><em>03</em>사용자</a>
+    <a href="#flow" data-nav><em>04</em>업무 흐름</a>
+    <a href="#features" data-nav><em>05</em>기능 범위</a>
+    <a href="#evidence" data-nav><em>06</em>분석·검증</a>
+    <a href="#system" data-nav><em>07</em>시스템 구성</a>
+  </nav>
+  <footer>DEVELOPMENT BRIEF <b data-page>00 / 07</b></footer>
+</aside>
+<main>
+  <section class="slide cover" id="cover" data-section>
+    <div class="photo"></div><div class="shade"></div><button class="menu" data-menu>목차</button>
+    <div class="cover-copy"><span class="tag">SERVICE DEVELOPMENT BRIEF · 2026</span><p>UR Connection MVP 개발 요구사항</p><h1>작업 영상 기반 숙련도 평가와<br>검토 업무를 통합 관리합니다.</h1><div class="purpose"><b>문서 목적</b> 본 문서는 외주 개발사가 개발 대상 서비스, 사용자 권한, 업무 프로세스, 기능·화면·데이터 범위와 협의 필요사항을 이해하고 견적·일정·구현 방식을 제안하기 위한 개발 의뢰용 브리프입니다.</div></div>
+    <div class="meta"><span>발주사 · UR Connection</span><span>개발 대상 · 숙련도 평가 관리 시스템</span><span>개발 범위 · MVP 필수 요구사항</span></div>
+  </section>
+
+  <section class="slide paper" id="overview" data-section><span class="num">01</span><p class="kicker">SERVICE OVERVIEW</p><div class="head"><h2>개발 대상 서비스는<br>무엇인가?</h2><p>작업자 정보, 평가 대상 영상, 분석 결과, 전문가 검토, 결과 리포트와 매칭 참고정보를 한 시스템에서 등록·조회·관리하는 업무 서비스입니다.</p></div><div class="definition"><b>서비스 정의</b><p><strong>UR Connection</strong>은 작업 영상에서 숙련도 평가에 필요한 지표와 근거 구간을 생성하고, 담당자가 이를 검토·보정·승인하여 결과를 관리하는 시스템입니다.</p></div><div class="three"><article><i>01</i><h3>평가 대상 등록</h3><p>작업자 기본정보, 직종, 평가 대상 영상과 결과물 이미지를 하나의 평가 건으로 등록합니다.</p></article><article><i>02</i><h3>분석 결과 검토</h3><p>시스템이 생성한 지표·점수·근거 구간을 평가 담당자가 확인하고 필요한 값을 보정합니다.</p></article><article><i>03</i><h3>결과 관리·제공</h3><p>승인된 평가 결과를 리포트로 출력하고 권한이 있는 사용자가 조회·비교할 수 있도록 합니다.</p></article></div><div class="callout"><b>구축 목표</b> 평가 대상 등록부터 <strong>분석 상태 관리, 근거 검토, 승인, 결과 조회·출력</strong>까지의 업무 흐름을 MVP에 구현합니다.</div></section>
+
+  <section class="slide dark" id="problem" data-section><span class="num">02</span><p class="kicker">CURRENT WORKFLOW / TARGET</p><div class="head"><h2>분리된 영상·평가·승인 업무를<br>하나의 흐름으로 관리해야 합니다.</h2><p>현재 개별 파일과 수작업으로 처리하는 등록·평가·검토·결과 전달 업무를 표준화하고, 승인 결과가 매칭·배치 검토까지 연결되도록 관리하는 것이 MVP 개발 목적입니다.</p></div><div class="transform"><article><label>현재 업무</label><ul><li><b>평가 접수</b>작업자 정보와 영상 파일 분리</li><li><b>영상 확인</b>평가자가 영상을 직접 탐색</li><li><b>점수 작성</b>평가표와 결과 파일 개별 관리</li><li><b>근거 기록</b>점수와 영상 구간 연결 부족</li><li><b>결과 전달</b>보고용 자료를 수작업 재작성</li><li><b>매칭 검토</b>평가와 배치 판단 자료 분리</li></ul></article><div class="turn"><small>통합 등록<br>근거·승인<br>매칭 연결</small><b>→</b></div><article class="tobe"><label>MVP 필수 개발 요구사항</label><ul><li><b>통합 등록</b>작업자·직종·영상·평가 건 연결</li><li><b>분석 운영</b>요청·상태·결과·재처리 관리</li><li><b>근거 조회</b>평가 항목과 영상 구간 연결</li><li><b>검토·승인</b>보정·코멘트·변경 이력 관리</li><li><b>결과·매칭</b>비교·PDF·추천 직무·사유 표시</li><li><b>배치 검토</b>최종 판단용 참고정보 제공</li></ul></article></div></section>
+
+  <section class="slide paper" id="users" data-section><span class="num">03</span><p class="kicker">USERS AND PERMISSIONS</p><div class="head"><h2>세 역할의 등록·평가·운영 권한을<br>구분합니다.</h2><p>내부 권한 체계의 company·evaluator·admin을 기준으로 메뉴와 데이터 접근범위를 구분합니다.</p></div><div class="personas three-roles"><article><div><i>01</i><small>COMPANY</small></div><h3>기업 담당자</h3><p>평가 대상 정보를 등록하고 승인된 결과를 채용·배치 검토에 활용합니다.</p><ul><li>작업자·영상 등록</li><li>평가 결과·후보 비교</li><li>매칭 추천·PDF 조회</li></ul></article><article><div><i>02</i><small>EVALUATOR</small></div><h3>평가자</h3><p>분석 결과와 영상 근거를 검토하고 최종 평가를 확정합니다.</p><ul><li>근거 구간 조회</li><li>점수 보정·코멘트</li><li>검토 완료·승인</li></ul></article><article><div><i>03</i><small>ADMIN</small></div><h3>운영·관리자</h3><p>사용자·기준정보·분석 상태와 전체 운영 업무를 관리합니다.</p><ul><li>계정·권한·평가 기준</li><li>오류 재처리·평가자 배정</li><li>전체 현황·감사 이력</li></ul></article></div></section>
+
+  <section class="slide journey-slide" id="flow" data-section><div class="map-photo"></div><div class="map-shade"></div><span class="num">04</span><div class="above"><p class="kicker">END-TO-END WORKFLOW</p><h2>평가 대상 등록부터 매칭·배치 검토까지<br>9단계로 구성합니다.</h2><div class="journey"><div><b>1</b><span>작업자 등록</span><small>기본·경력정보</small></div><div><b>2</b><span>평가 건 생성</span><small>직종·기준 선택</small></div><div><b>3</b><span>영상 등록</span><small>파일·메타정보</small></div><div><b>4</b><span>분석 요청</span><small>상태·오류 관리</small></div><div><b>5</b><span>결과 생성</span><small>지표·점수·근거</small></div><div><b>6</b><span>검토·보정</span><small>평가자 확인</small></div><div><b>7</b><span>승인·PDF</span><small>결과 확정</small></div><div><b>8</b><span>매칭 추천</span><small>직무·기업·사유</small></div><div><b>9</b><span>채용·배치 검토</span><small>기업 담당자 판단</small></div></div><div class="scenario"><b>의사결정 활용 범위</b><span>후보 비교</span><span>추천 직무·기업 표시</span><span>추천 사유 확인</span><span>평가 PDF 출력</span><span>최종 판단은 기업 담당자 수행</span></div></div></section>
+
+  <section class="slide paper" id="features" data-section><span class="num">05</span><p class="kicker">MVP FUNCTIONAL REQUIREMENTS</p><div class="head"><h2>MVP 필수 요구사항은 8개<br>업무 모듈로 구성됩니다.</h2><p>등록·분석·검토뿐 아니라 승인 결과가 매칭 추천과 채용·배치 검토에 이어지도록 기능 범위를 구성합니다.</p></div><div class="modules"><div class="th"><span>모듈</span><span>구현 필요 기능</span><span>주요 관리 데이터</span></div><div><b>01 · 사용자·권한</b><span>company·evaluator·admin별 메뉴·데이터 접근권한과 접속 이력</span><em>사용자·권한</em></div><div><b>02 · 작업자 관리</b><span>기본정보, 경력, 국적, 언어, 자격과 관련 첨부파일 등록·조회</span><em>작업자 정보</em></div><div><b>03 · 직종·평가 기준</b><span>직종, 평가항목, 배점·가중치, 등급 기준의 등록·버전 관리</span><em>평가 기준정보</em></div><div><b>04 · 영상·평가 건</b><span>영상 업로드, 메타정보, 평가 건 생성, 분석 요청과 처리 상태 관리</span><em>영상·평가 건</em></div><div><b>05 · 분석 운영</b><span>결과 등록·조회, 신뢰도·근거 구간, 오류 확인과 재처리</span><em>분석 결과</em></div><div><b>06 · 검토·승인</b><span>영상 근거 확인, 점수 보정, 코멘트, 승인과 변경 이력 관리</span><em>승인 평가</em></div><div><b>07 · 결과·매칭</b><span>후보 비교, 평가 PDF, 추천 직무·기업·사유와 배치 참고정보 표시</span><em>매칭 추천</em></div><div><b>08 · 운영 관리</b><span>전체 현황, 실패 재처리, 평가자 배정과 기준정보 관리</span><em>운영 현황</em></div></div></section>
+
+  <section class="slide evidence" id="evidence" data-section><span class="num">06</span><p class="kicker">ANALYSIS RESPONSIBILITY BOUNDARY</p><div class="head"><h2>분석 운영 기능은 필수이며,<br>분석 알고리즘은 제안·협의 대상입니다.</h2><p>개발 견적은 시스템이 반드시 제공해야 하는 분석 연계·운영 기능과, 기술 검토 후 확정할 알고리즘 구현 범위를 구분하여 제안해야 합니다.</p></div><div class="evidence-grid"><div class="compare"><img src="assets/evidence-frame.jpg" alt="예시 작업 영상 원본 프레임"><div data-before><img src="assets/pose-frame.jpg" alt="예시 분석 결과 오버레이 프레임"></div><span data-line>↔</span><input data-slider type="range" min="0" max="100" value="50" aria-label="예시 원본 영상과 분석 결과 비교"><i>분석 결과 예시</i><i>원본 예시</i></div><div class="logic"><article><small>REQUIRED 1</small><b>분석 요청·상태 관리</b><p>영상별 요청, 대기·처리·완료·오류 상태를 관리합니다.</p></article><article><small>REQUIRED 2</small><b>결과 등록·조회</b><p>지표·점수·신뢰도와 영상 근거 구간을 저장·조회합니다.</p></article><article><small>REQUIRED 3</small><b>오류·재처리</b><p>실패 사유를 확인하고 권한에 따라 재분석을 요청합니다.</p></article><article><small>REQUIRED 4</small><b>검토·승인 이력</b><p>보정값·코멘트·승인과 기준 버전을 보존합니다.</p></article></div></div><div class="formula"><small>개발사 제안·협의 범위</small><b>영상 구간 추출</b><i>·</i><b>자세·동작 분석</b><i>·</i><b>특징값 정의</b><i>·</i><b>점수 산식·모델</b><i>·</i><strong>정확도 검수 기준</strong></div><p class="warning">※ 분석 알고리즘까지 개발 범위에 포함할 경우 별도 공수·전제조건·검증 방법을 구분해 제안해야 합니다. 화면의 이미지와 수치는 예시 데이터이며, 시스템은 채용·배치·체류·자격을 자동 확정하지 않습니다.</p></section>
+
+  <section class="slide paper" id="system" data-section><span class="num">07</span><p class="kicker">SCREEN / DATA / INTEGRATION SCOPE</p><div class="head"><h2>업무 화면과 공통 데이터를<br>하나의 시스템으로 구성합니다.</h2><p>화면·데이터·권한·상태 관리는 필수 요구사항으로 정의하고, 분석 알고리즘·저장소·외부 서비스·배포환경은 개발사와 협의하여 확정합니다.</p></div><div class="architecture"><article><small>USER INTERFACE</small><h3>화면·모듈 구성</h3><p>로그인 · 대시보드 · 작업자 · 평가 건 · 분석 결과 · 검토 · 매칭 · PDF</p></article><article><small>PROCESSING</small><h3>업무·분석 운영 기능</h3><p>권한 · 상태 전이 · 분석 요청 · 오류·재처리 · 승인 · 추천 결과 제공</p></article><div class="api"><i></i><b>공통 데이터·권한·상태·이력 관리 영역</b><i></i></div><div class="data"><span>사용자·권한</span><span>작업자·직종</span><span>영상·평가 건</span><span>분석·승인 결과</span><span>매칭·PDF 이력</span></div></div><div class="future"><b>구현 방식 협의</b><span>분석 알고리즘</span><span>파일 저장·보관</span><span>외부 인증·알림</span><span>배포·운영환경</span><a href="https://ur-prototype.github.io/dashboard/">화면 구성 참고자료 ↗</a></div></section>
+
+</main>
+<script src="presentation.js"></script>
+</body>
+</html>
