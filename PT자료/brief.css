@@ -5,7 +5,11 @@
 
 .slide.dense {
   padding: 5.5vh 4.5vw 4.5vh;
-  overflow: hidden;
+  overflow: auto;
+  min-height: 100dvh;
+  height: auto;
+  scroll-snap-align: start;
+  scroll-snap-stop: always;
 }
 
 .head.row {
@@ -1702,5 +1706,102 @@ body.nav-hidden .nav-toggle { left: 16px; }
   .matrix.tight > div {
     grid-template-columns: 1fr;
     gap: 4px;
+  }
+}
+
+/* ===== Scroll snap + shrink-safe layout ===== */
+html {
+  scroll-snap-type: y mandatory;
+  scroll-padding: 0;
+}
+
+.slide,
+.slide.dense {
+  scroll-snap-align: start;
+  scroll-snap-stop: always;
+  min-height: 100dvh;
+  height: auto;
+  max-width: 100%;
+}
+
+.slide.dense {
+  overflow-x: hidden;
+  overflow-y: auto;
+}
+
+main {
+  max-width: 100%;
+  overflow-x: clip;
+}
+
+.head,
+.head-main,
+.lede,
+.cover-copy,
+.purpose {
+  max-width: min(920px, 100%);
+}
+
+.three,
+.personas,
+.architecture,
+.scope-grid,
+.evidence-grid,
+.proto-layout,
+.done-grid,
+.report-layout {
+  max-width: 100%;
+}
+
+@media (max-width: 1280px) {
+  .three,
+  .personas.three-roles,
+  .architecture:not(.triple) {
+    grid-template-columns: 1fr 1fr;
+  }
+  .personas {
+    grid-template-columns: 1fr 1fr;
+  }
+  .journey {
+    grid-template-columns: repeat(5, 1fr);
+  }
+  .data {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media (max-height: 820px) {
+  .slide.dense {
+    padding: 4vh 3.5vw 3.5vh;
+  }
+  .kicker {
+    margin-bottom: 1.6vh;
+  }
+  .lede {
+    margin-bottom: 1.4vh;
+    font-size: 15px;
+  }
+  .personas article {
+    min-height: 0;
+  }
+}
+
+@media (max-width: 1000px) {
+  html {
+    scroll-snap-type: y proximity;
+  }
+  .slide,
+  .slide.dense {
+    min-height: auto;
+  }
+  .cover.dense {
+    min-height: 100svh;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+    scroll-snap-type: none;
   }
 }
