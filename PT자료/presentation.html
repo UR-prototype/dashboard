@@ -406,21 +406,21 @@
     <p class="head-tag">화면 × 행동 × 데이터</p>
   </div>
 
-  <div class="ui-grid tight">
-    <article>
+  <div class="ui-grid board">
+    <article class="c01">
       <h3>01 업로드·목록</h3>
       <p class="act">등록 · 재업로드 · 상태 필터</p>
       <p class="data">worker · job · quality · Job상태(queued/pose/done/failed)</p>
     </article>
-    <article>
+    <article class="c02">
       <h3>02 분석 진행</h3>
       <p class="act">실패 사유 확인 · 재처리 요청</p>
       <p class="data">단계별 진행률 · error_code</p>
     </article>
-    <article class="wide">
+    <article class="c03">
       <h3>03 분석 상세 · 플레이어 + Timeline + 근거</h3>
-      <div class="detail-mini">
-        <div class="compare tiny" data-compare>
+      <div class="detail-mini stacked">
+        <div class="compare tiny tall" data-compare>
           <img src="assets/evidence-frame.jpg" alt="원본 프레임">
           <div data-before><img src="assets/pose-frame.jpg" alt="Pose 오버레이"></div>
           <span data-line></span>
@@ -437,12 +437,12 @@
         </ul>
       </div>
     </article>
-    <article>
+    <article class="c04">
       <h3>04 숙련도 결과</h3>
       <p class="act">등급·4축·강점/개선 확인</p>
       <p class="data">skill_score · metrics · deductions · evidence link</p>
     </article>
-    <article>
+    <article class="c05">
       <h3>05 이력·비교·발급</h3>
       <p class="act">회차 비교 · PDF 발급</p>
       <p class="data">추이 · 반복 취약항목 · report 버전</p>
