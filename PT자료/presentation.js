@@ -124,18 +124,19 @@ window.addEventListener(
   { passive: true },
 );
 
-const slider = document.querySelector("[data-slider]");
-const before = document.querySelector("[data-before]");
-const line = document.querySelector("[data-line]");
+document.querySelectorAll("[data-compare], .compare").forEach((compare) => {
+  const slider = compare.querySelector("[data-slider]");
+  const before = compare.querySelector("[data-before]");
+  const line = compare.querySelector("[data-line]");
+  if (!slider) return;
 
-function applySlider(value) {
-  if (before) before.style.clipPath = `inset(0 ${100 - value}% 0 0)`;
-  if (line) line.style.left = `${value}%`;
-}
+  function applySlider(value) {
+    if (before) before.style.clipPath = `inset(0 ${100 - value}% 0 0)`;
+    if (line) line.style.left = `${value}%`;
+  }
 
-if (slider) {
   applySlider(Number(slider.value) || 50);
   slider.addEventListener("input", (event) =>
     applySlider(Number(event.target.value)),
   );
-}
+});

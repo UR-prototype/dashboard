@@ -420,12 +420,22 @@
         <h3>검토 화면에서 보는 것</h3>
         <span>분석 상세</span>
       </header>
-      <ul>
-        <li><b>재생 + Timeline</b> Stage/Event·감점·위험 구간 seek</li>
-        <li><b>판정 근거</b> Pose 오버레이 · 모듈 conf · 항목 점수</li>
-        <li><b>보정 액션</b> 승인 / 수정 / 사유 저장</li>
-        <li><b>결과 요약</b> 4축 · 강점/개선 · evidence link</li>
-      </ul>
+      <div class="review-evidence">
+        <div class="compare tiny" data-compare>
+          <img src="assets/evidence-frame.jpg" alt="원본 프레임">
+          <div data-before><img src="assets/pose-frame.jpg" alt="Pose 오버레이"></div>
+          <span data-line></span>
+          <input data-slider type="range" min="0" max="100" value="55" aria-label="원본/Pose 비교">
+          <i class="cmp-label left">Original</i>
+          <i class="cmp-label right">Pose</i>
+        </div>
+        <ul>
+          <li><b>재생 + Timeline</b> Stage/Event·감점·위험 seek</li>
+          <li><b>판정 근거</b> Pose · conf · 항목 점수</li>
+          <li><b>보정 액션</b> 승인 / 수정 / 사유 저장</li>
+          <li><b>결과 요약</b> 4축 · 강점/개선 · evidence</li>
+        </ul>
+      </div>
       <p class="hint-line">저신뢰·실패 건은 목록에서 먼저 걸러 상세로 들어갑니다.</p>
     </article>
 
