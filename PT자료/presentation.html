@@ -61,7 +61,7 @@
         </p>
       </div>
     </div>
-    <a class="head-tag link" href="https://ur-prototype.github.io/dashboard/" target="_blank" rel="noopener">라이브 열기 ↗</a>
+    <a class="head-tag link" href="https://ur-prototype.github.io/dashboard/" target="_blank" rel="noopener">플랫폼 프로토타입 바로가기 ↗</a>
   </div>
 
   <div class="proto-layout">
@@ -106,7 +106,6 @@
            <BR>사용자가 작업자 정보와 숙련도 정보를 조회할 수 있어야 합니다.</p>
       </div>
     </div>
-    <p class="head-tag">역할 = 화면 행동 × 다루는 데이터</p>
   </div>
 
   <div class="role-table">
@@ -138,78 +137,131 @@
     <div class="head-main">
       <h2>플랫폼 기능 프로세스</h2>
       <div class="lede">
-        <p>보유한 작업자·직종별 현장 영상을 표준화·전처리한 뒤, AI가 작업 자세·도구 사용·공정 구간·이상행동을 분석합니다. 분석 결과는 평가기준과 결합해 숙련도 점수·등급으로 산출하고, 전문가 검수·보정을 거쳐 채용·배치·교육에 활용 가능한 평가 결과와 보고서로 제공되어야 함.</p>
+        <p>1. 시스템 관리자가 보유한 작업자·직종별 현장 영상을 업로드 합니다.</p><BR>
+        <p>2. 작업자의 작업 영상은 시스템 내부에 저장되며, 이후 직접 시스템에서 라벨링하거나, 라벨 데이터(JSON 파일 등)를 업로드합니다.</p><BR>
+        <p>3. AI가 작업/업로드 된 라벨 데이터를 통해 작업 자세·도구 사용·공정 구간·이상행동을 분석합니다.</p><BR>
+        <p>4. 분석 결과는 평가기준과 결합해 숙련도 점수·등급으로 산출됩니다.</p><BR>
+        <p>5. 평가 결과는 이후 보고서 형태로 대시보드에 노출되고 PDF 출력 기능이 제공되어야 합니다.</p>
       </div>
     </div>
     <p class="head-tag light">전체 흐름만 · 상세는 05·06</p>
   </div>
+  
 
   <div class="e2e-flow">
     <div class="e2e-col">
-      <h3>1. 원천 연결</h3>
+      <h3>1. 작업 영상 등록</h3>
       <ul>
-        <li>worker_id · job_type</li>
-        <li>시나리오 · NCS 단위</li>
-        <li>영상 파일 · 결과물 사진</li>
-        <li>촬영 meta · 동의</li>
+        <li>작업자·직종 정보 매칭</li>
+        <li>현장 작업 영상 업로드</li>
+        <li>작업유형·평가기준 연결</li>
+        <li>영상·평가 데이터 통합 관리</li>
       </ul>
-      <em>담당 · 등록</em>
+      <em>관리자 · 데이터 등록</em>
     </div>
+
     <div class="e2e-col">
-      <h3>2. 표준화</h3>
+      <h3>2. 데이터 라벨링</h3>
       <ul>
-        <li>품질 게이트</li>
-        <li>FFmpeg 전처리</li>
-        <li>분석 Job 생성</li>
-        <li>상태 = queued</li>
+        <li>영상 프레임·작업구간 분할</li>
+        <li>Pose 기반 관절점 라벨링</li>
+        <li>도구·객체 Bounding Box 지정</li>
+        <li>JSON 라벨 데이터 생성·업로드</li>
       </ul>
-      <em>담당 · 시스템</em>
+      <em>라벨링 · 데이터 전처리</em>
     </div>
+
     <div class="e2e-col accent">
-      <h3>3. AI 분석</h3>
+      <h3>3. AI 작업 분석</h3>
       <ul>
-        <li>Detect · Track · Pose</li>
-        <li>Feature 시계열</li>
-        <li>Stage/Event 후보</li>
-        <li>Analysis JSON</li>
+        <li>Pose Estimation · 자세 추적</li>
+        <li>Object Detection · 도구 탐지</li>
+        <li>Tracking · 동작·객체 추적</li>
+        <li>시계열 기반 작업구간 분석</li>
       </ul>
-      <em>담당 · AI 워커</em>
+      <em>Vision AI · 자동 분석</em>
     </div>
+
     <div class="e2e-col">
-      <h3>4. 판정·검수</h3>
+      <h3>4. 숙련도 판정</h3>
       <ul>
-        <li>평가항목 매핑</li>
-        <li>Rule Score 산출</li>
-        <li>저신뢰 보류</li>
-        <li>전문가 보정·확정</li>
+        <li>NCS·전문가 평가기준 매핑</li>
+        <li>작업 순서·시간·정확도 비교</li>
+        <li>Rule 기반 항목별 점수 산출</li>
+        <li>종합점수·숙련도 등급 판정</li>
       </ul>
-      <em>담당 · AI+전문가</em>
+      <em>AI 분석 · 평가 엔진</em>
     </div>
+
     <div class="e2e-col">
-      <h3>5. 활용</h3>
+      <h3>5. 결과 확인·활용</h3>
       <ul>
-        <li>결과 화면</li>
-        <li>Timeline 근거</li>
-        <li>평가 보고서</li>
-        <li>이력·발급기록</li>
+        <li>작업자별 숙련도 시각화</li>
+        <li>Timeline 기반 판정근거 조회</li>
+        <li>평가결과 자동 보고서 생성</li>
+        <li>PDF 출력·평가이력 관리</li>
       </ul>
-      <em>담당 · 사용자</em>
+      <em>대시보드 · 리포팅</em>
     </div>
   </div>
+
 
   <div class="io-compact">
-    <div class="io-h"><span>단계</span><span>입력 키</span><span>핵심 처리</span><span>출력 키</span><span>상태</span></div>
-    <div><b>등록</b><span>mp4 · worker · job · camera</span><span>메타 연결 · 저장</span><span>video_id · package</span><span>uploaded</span></div>
-    <div><b>품질</b><span>영상 · meta</span><span>해상도·fps·가림·손상 검사</span><span>pass / retry / reject</span><span>quality_*</span></div>
-    <div><b>분석</b><span>합격 패키지</span><span>파이프라인 Job 실행</span><span>Analysis Record</span><span>pose→done/fail</span></div>
-    <div><b>확정</b><span>점수·근거·신뢰도</span><span>검수·보정·잠금</span><span>확정 skill_level</span><span>confirmed</span></div>
-    <div><b>발급</b><span>확정값</span><span>보고서 렌더</span><span>PDF · 이력</span><span>issued</span></div>
+    <div class="io-h">
+      <span>단계</span>
+      <span>입력 데이터</span>
+      <span>적용 기술</span>
+      <span>분석·처리 결과</span>
+      <span>활용</span>
+    </div>
+
+    <div>
+      <b>영상 등록</b>
+      <span>작업자 · 직종 · 작업 영상</span>
+      <span>영상·메타데이터 매핑</span>
+      <span>작업자별 원천데이터 구축</span>
+      <span>분석 대상 관리</span>
+    </div>
+
+    <div>
+      <b>라벨링</b>
+      <span>영상 · 기존 라벨 데이터</span>
+      <span>프레임 분할 · Keypoint · Bounding Box</span>
+      <span>구간·자세·도구 라벨 데이터</span>
+      <span>AI 분석 데이터</span>
+    </div>
+
+    <div>
+      <b>AI 분석</b>
+      <span>영상 · 라벨링 데이터</span>
+      <span>Pose Estimation · Detection · Tracking</span>
+      <span>자세·도구·작업순서·시간·이상행동</span>
+      <span>작업 수행 분석</span>
+    </div>
+
+      <div>
+        <b>숙련도 판정</b>
+        <span>AI 분석값 · 평가기준</span>
+        <span>시계열 비교 · Rule Scoring</span>
+        <span>항목별 점수 · 종합점수 · 숙련등급</span>
+        <span>평가결과 확정</span>
+      </div>
+
+    <div>
+      <b>결과 활용</b>
+      <span>숙련도 평가 결과</span>
+      <span>Dashboard · Report Rendering</span>
+      <span>시각화 대시보드 · PDF 보고서</span>
+      <span>조회 · 출력 · 이력관리</span>
+    </div>
   </div>
 
+
   <div class="call-line">
-    <b>필수 전제</b>
-    영상 파일만 올리면 판정 불가 → <em>누구(worker_id) / 어떤 작업(job·scenario) / 어떤 기준(criteria_version)</em>이 먼저 연결되어야 함
+    <b>핵심 기술 흐름</b>
+    작업 영상·라벨 데이터 → <em>Pose Estimation · Object Detection/Tracking → 시계열 작업 분석 → 평가기준 기반 Rule Scoring → 숙련도 시각화·보고서 생성</em>
   </div>
+
 </section>
 
 <!-- ========== 04 ========== -->
@@ -220,44 +272,64 @@
     <div class="head-main">
       <h2>작업 영상 입력부터 AI 분석결과 산출까지의 처리 과정</h2>
       <div class="lede">
-        <p>관리자가 작업자 A의 작업 과정을 촬영한 영상을 등록하면, AI가 작업자 A의 자세·손동작·도구·객체를 자동 탐지·라벨링하고 분석 가능한 시계열 데이터로 전처리함.</p>
-        <p>이후 작업 구간·순서·소요시간·이상행동 등을 분석하여 숙련도 판정에 필요한 점수와 근거 데이터를 산출함.</p>
+        <p>관리자가 작업자 A의 작업 과정을 촬영한 영상을 등록하면<BR>
+           관리자가 작업자 A의 자세·손동작·도구·객체를 라벨링하거나, 이미 라벨링 된 라벨데이터 파일을 입력해야 합니다.<BR>
+
+        <p>이후 작업 구간·순서·소요시간·이상행동 등을 분석하여 숙련도 판정에 필요한 점수와 근거 데이터를 산출하여야 합니다.</p>
       </div>
     </div>
     <p class="head-tag">모듈 = 목적 · 기술 · 생성 데이터</p>
   </div>
 
   <div class="pipe-line">
-    <span>등록</span><i>→</i>
-    <span>FFmpeg</span><i>→</i>
-    <span>YOLO</span><i>→</i>
-    <span>ByteTrack</span><i>→</i>
-    <span>MediaPipe</span><i>→</i>
-    <span>Feature</span><i>→</i>
-    <span>Stage/Event</span><i>→</i>
-    <span class="out">Analysis JSON</span>
+    <span>영상 등록</span><i>→</i>
+    <span>사람 검출</span><i>→</i>
+    <span>Pose 추정</span><i>→</i>
+    <span>작업단계 라벨</span><i>→</i>
+    <span>이상행동 라벨</span><i>→</i>
+    <span>NCS 판정</span><i>→</i>
+    <span class="out">점수·근거</span>
   </div>
 
-  <div class="mod-table tech">
-    <div class="io-h"><span>모듈</span><span>분석 대상</span><span>적용 기술</span><span>생성 데이터</span><span>시제품 범위</span></div>
-    <div><b>전처리</b><span>원본 mp4</span><span>FFmpeg · OpenCV</span><span>클립 · 프레임 · TASK_ACTIVE</span><span>필수 · 화질 자동판정은 후속</span></div>
-    <div><b>사람·공구 검출</b><span>프레임</span><span>YOLO11/v8</span><span>bbox · class · conf</span><span>person 부트스트랩 · 공구 Fine-tune은 데이터 후</span></div>
-    <div><b>주 작업자 추적</b><span>bbox 시계열</span><span>ByteTrack</span><span>track_id_primary</span><span>필수 · 다인 장면 주트랙 고정</span></div>
-    <div><b>Pose</b><span>주트랙 영역</span><span>MediaPipe Pose Landmarker</span><span>33 keypoints · xy/z · conf</span><span>검증됨(샘플 실추론) · 실패 시 RTMPose 대안</span></div>
-    <div><b>Feature</b><span>Pose·시간</span><span>자체 Feature Engine</span><span>hand_travel · idle_time · work_speed · joint_angle_var</span><span>필수 · 점수 입력값</span></div>
-    <div><b>Stage / Event</b><span>공정·특이행동</span><span>규칙·라벨(CVAT) · 후기 Action 제안</span><span>stages[] · events[] · timestamp</span><span>MVP = 라벨/규칙 · 자동제안은 고도화</span></div>
+  <div class="mod-table tech scope5">
+    <div class="io-h"><span>모듈</span><span>분석 대상</span><span>구현 방식</span><span>생성 데이터</span><span>시제품 범위</span></div>
+    <div>
+      <b>객체 검출</b>
+      <span>영상 내 사람 위치</span>
+      <span>오픈소스 AI 자동 · Person Detection</span>
+      <span>person bbox · 위치 · conf</span>
+      <span>사람만 포함 · <em>공구·부품 인식 제외</em></span>
+    </div>
+    <div>
+      <b>포즈 추정</b>
+      <span>작업자 주요 관절</span>
+      <span>오픈소스 Pose 자동 · Keypoint</span>
+      <span>관절 좌표 · conf · 시계열</span>
+      <span>자동 추출만 · 관절 수기 라벨링 UI 없음</span>
+    </div>
+    <div>
+      <b>작업단계 인식</b>
+      <span>공정 구간·순서</span>
+      <span>시스템 타임라인 라벨링</span>
+      <span>단계명 · start–end · 소요시간 · 순서</span>
+      <span>예) 00:18~00:47 부품 조립 · 관리자 등록</span>
+    </div>
+    <div>
+      <b>이상행동</b>
+      <span>비정상·위험 구간</span>
+      <span>시스템 타임라인 라벨링</span>
+      <span>유형 · 발생구간 · 횟수 · 메모</span>
+      <span>예) 00:32~00:36 작업순서 오류 · 관리자 등록</span>
+    </div>
+    <div>
+      <b>숙련도 판정</b>
+      <span>NCS 절차·평가기준</span>
+      <span>자체 내부 로직 · Rule Engine</span>
+      <span>항목점수 · 종합점수 · 등급 · 판정근거</span>
+      <span>Pose·단계·시간·이상행동 매핑 · 가중치는 협의 후</span>
+    </div>
   </div>
 
-  <div class="two-call">
-    <div class="call-line">
-      <b>시제품 자동 범위</b>
-      Detect·Track·Pose·Feature까지 자동 → Stage/Event는 <em>자동 제안 + 전문가 확정</em> → Skill Score는 <em>Rule Engine</em>(가중치·임계값은 협의 후)
-    </div>
-    <div class="call-line alt">
-      <b>Analysis Record 핵심 키</b>
-      <code>video_id</code> · <code>worker_id</code> · <code>pose_timeline</code> · <code>features</code> · <code>stages</code> · <code>events</code> · <code>confidence</code>
-    </div>
-  </div>
 </section>
 
 <!-- ========== 05 ========== -->
@@ -316,6 +388,9 @@
     </div>
   </div>
 </section>
+
+
+
 
 <!-- ========== 06 ========== -->
 <section class="slide paper dense merged" id="p07" data-section>

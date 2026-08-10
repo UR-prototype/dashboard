@@ -50,9 +50,8 @@ const before = document.querySelector("[data-before]");
 const line = document.querySelector("[data-line]");
 
 function applySlider(value) {
-  const v = Math.max(0, Math.min(100, Number(value) || 0));
-  if (before) before.style.clipPath = `inset(0 ${100 - v}% 0 0)`;
-  if (line) line.style.left = `${v}%`;
+  if (before) before.style.clipPath = `inset(0 ${100 - value}% 0 0)`;
+  if (line) line.style.left = `${value}%`;
 }
 
 if (slider) {
