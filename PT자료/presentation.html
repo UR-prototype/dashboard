@@ -396,77 +396,62 @@
 <section class="slide paper dense merged" id="p07" data-section>
   <span class="num">07</span>
   <p class="kicker">SCREENS · REVIEW · REPORT</p>
-  <div class="head row">
+  <div class="head row compact">
     <div class="head-main">
-      <h2>AI 분석결과 검토부터 보고서 활용까지</h2>
-      <div class="lede">
-        <p>관리자는 등록된 영상의 AI 분석 진행상태를 확인하고, 분석 완료 후 영상 Timeline과 판정 근거를 함께 검토함. 항목별 점수·감점 구간·결과물 품질을 확인·보정하여 숙련등급을 확정하고, 최종 결과는 이력 비교와 채용·배치·교육에 활용함.</p>
+      <h2>검토 → 확정 → 보고서까지 한 흐름</h2>
+      <div class="lede short">
+        <p>관리자는 AI 분석 결과를 Timeline·근거와 함께 검토·보정한 뒤 숙련등급을 확정하고, 동일 확정값을 보고서·이력·배치에 씁니다.</p>
       </div>
     </div>
-    <p class="head-tag">화면 × 행동 × 데이터</p>
+    <p class="head-tag">화면 × 확정 × 활용</p>
   </div>
 
-  <div class="ui-grid">
-    <article>
-      <h3>01 업로드·목록</h3>
-      <p class="act">등록 · 재업로드 · 상태 필터</p>
-      <p class="data">worker · job · quality · Job상태(queued/pose/done/failed)</p>
+  <ol class="review-flow" aria-label="검토·보고서 흐름">
+    <li><b>01</b><span>업로드·목록</span><small>상태 필터</small></li>
+    <li><b>02</b><span>분석 진행</span><small>재처리</small></li>
+    <li><b>03</b><span>상세 검토</span><small>Timeline·근거</small></li>
+    <li><b>04</b><span>숙련 확정</span><small>점수·등급</small></li>
+    <li><b>05</b><span>보고서·활용</span><small>PDF·이력</small></li>
+  </ol>
+
+  <div class="review-pack">
+    <article class="review-col">
+      <header>
+        <h3>검토 화면에서 보는 것</h3>
+        <span>분석 상세</span>
+      </header>
+      <ul>
+        <li><b>재생 + Timeline</b> Stage/Event·감점·위험 구간 seek</li>
+        <li><b>판정 근거</b> Pose 오버레이 · 모듈 conf · 항목 점수</li>
+        <li><b>보정 액션</b> 승인 / 수정 / 사유 저장</li>
+        <li><b>결과 요약</b> 4축 · 강점/개선 · evidence link</li>
+      </ul>
+      <p class="hint-line">저신뢰·실패 건은 목록에서 먼저 걸러 상세로 들어갑니다.</p>
     </article>
-    <article>
-      <h3>02 분석 진행</h3>
-      <p class="act">실패 사유 확인 · 재처리 요청</p>
-      <p class="data">단계별 진행률 · error_code</p>
-    </article>
-    <article class="wide">
-      <h3>03 분석 상세 · 플레이어 + Timeline + 근거</h3>
-      <div class="detail-mini">
-        <div class="compare tiny">
-          <img src="assets/evidence-frame.jpg" alt="원본 프레임">
-          <div data-before><img src="assets/pose-frame.jpg" alt="Pose 오버레이"></div>
-          <span data-line></span>
-          <input data-slider type="range" min="0" max="100" value="55" aria-label="원본/Pose 비교">
+
+    <article class="report-col">
+      <header>
+        <h3>확정 후 산출물</h3>
+        <span>숙련도 평가 보고서</span>
+      </header>
+      <div class="score-band">
+        <div class="score-pill">
+          <em>종합 예시</em>
+          <b>77</b>
+          <span>중급</span>
         </div>
         <ul>
-          <li>Stage/Event 클릭 → timestamp seek</li>
-          <li>감점·위험 구간 칩 표시</li>
-          <li>Pose Original / Overlay / Skeleton</li>
-          <li>모듈 conf · 항목점수 · 전문가 메모</li>
-          <li>승인 / 수정 / 사유 저장</li>
-        </ul>
-      </div>
-    </article>
-    <article>
-      <h3>04 숙련도 결과</h3>
-      <p class="act">등급·4축·강점/개선 확인</p>
-      <p class="data">skill_score · metrics · deductions · evidence link</p>
-    </article>
-    <article>
-      <h3>05 이력·비교·발급</h3>
-      <p class="act">회차 비교 · PDF 발급</p>
-      <p class="data">추이 · 반복 취약항목 · report 버전</p>
-    </article>
-  </div>
-
-  <div class="report-layout">
-    <div class="report-card main">
-      <label>핵심 산출물 · 숙련도 평가 보고서</label>
-      <div class="score-mock">
-        <div><em>종합(예시)</em><b>77</b><span>중급</span></div>
-        <ul>
-          <li>4축 · speed / stability / repetition / accuracy</li>
-          <li>강점 · 개선 · 오류·위험 구간 링크</li>
+          <li>NCS E1–E4·SAFE · 4축 병행</li>
           <li>ai_confidence · 전문가 보정 여부</li>
-          <li>criteria_version · analysis_version</li>
-          <li>NCS 루브릭(E1–E4·SAFE) 병행 표시</li>
+          <li>criteria / analysis version</li>
         </ul>
       </div>
-    </div>
-    <div class="report-side">
-      <div><b>발급 조건</b><span>분석 done · 저신뢰 검토 완료 · 전문가 확정</span></div>
-      <div><b>화면</b><span>등급 · 레이더 · Timeline · 바로보기</span></div>
-      <div><b>문서</b><span>동일 확정값 → PDF 자동 정리</span></div>
-      <div><b>활용</b><span>채용·배치 · 교육 · 작업자 피드백</span></div>
-    </div>
+      <div class="use-row">
+        <div><b>발급</b><span>done · 검토 완료 · 확정</span></div>
+        <div><b>문서</b><span>동일 확정값 → PDF</span></div>
+        <div><b>활용</b><span>채용·배치·교육·피드백</span></div>
+      </div>
+    </article>
   </div>
 </section>
 
